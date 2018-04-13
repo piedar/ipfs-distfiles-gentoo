@@ -10,7 +10,7 @@ If you already have a repo under \$DISTDIR, take a backup!
 
     cd "${DISTDIR:-/usr/portage/distfiles}"
     git init
-    git remote add ipfs-distfiles https://gitlab.com/piedar/ipfs-gentoo-distfiles
+    git remote add ipfs-distfiles https://github.com/piedar/ipfs-distfiles-gentoo
     git fetch --all
     git reset --hard ipfs-distfiles/master
 
