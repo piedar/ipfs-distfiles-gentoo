@@ -9,9 +9,11 @@ trap 'rm -r "${distdir_tmp}"' EXIT
 DISTDIR_TMP="${DISTDIR_TMP:-${distdir_tmp}}"
 DISTDIR="${DISTDIR:-/usr/portage/distfiles}"
 
-packages="$@"
+package="$@"
 
-DISTDIR="${DISTDIR_TMP}" emerge --fetchonly "${packages}" || exit $?
+DISTDIR="${DISTDIR_TMP}"                      emerge --fetchonly "${package}" || exit $?
+DISTDIR="${DISTDIR_TMP}" ACCEPT_KEYWORDS="~*" emerge --fetchonly "${package}"
+
 
 added_files=()
 
@@ -30,4 +32,4 @@ for file in "${DISTDIR_TMP}"/* ; do
   added_files+=("${filename}")
 done
 
-git commit ${added_files[@]} -m "link ${packages}"
+git commit ${added_files[@]} -m "link ${package}"
