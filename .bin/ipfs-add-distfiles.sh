@@ -26,7 +26,7 @@ for file in "${DISTDIR_TMP}"/* ; do
 
   rm -f "${filename}"
   ln -s "/ipfs/${hash}" "${filename}"
-  git add "${filename}"
+  git add "${filename}" || exit $?
   added_files+="${filename}"
 done
 
